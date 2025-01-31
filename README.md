@@ -13,3 +13,19 @@
 - **H2 Database**: 인메모리 데이터베이스로 간단한 데이터 저장소 제공
 - **JPA (Hibernate)**: 데이터베이스와 객체 간의 매핑
 - **RESTful API**: HTTP 메서드(GET, POST, PUT, DELETE)를 통한 데이터 처리
+
+**POST**
+
+<img width="626" alt="스크린샷 2025-01-31 오후 4 25 25" src="https://github.com/user-attachments/assets/3f32e254-ebb1-4e5a-99c7-d6501d704860" />
+
+**GET**
+
+<img width="653" alt="스크린샷 2025-01-31 오후 4 25 46" src="https://github.com/user-attachments/assets/70aaf1d0-79a7-4c24-804b-5ae0e6a7243b" />
+
+**PUT**
+
+<img width="628" alt="스크린샷 2025-01-31 오후 4 25 54" src="https://github.com/user-attachments/assets/90eafd02-05d3-4c20-8a52-c501e6263d97" />
+
+**DELETE**
+
+<img width="633" alt="스크린샷 2025-01-31 오후 4 26 00" src="https://github.com/user-attachments/assets/cb3759e9-4073-421c-b7f2-6b4d5d0b8c45" />

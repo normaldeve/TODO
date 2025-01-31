@@ -1,5 +1,6 @@
 package com.example.todo.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,8 +23,11 @@ public class Todo {
     private int id;
     private String title;
     private String content;
-    private LocalDate day; // 년월일
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate tday; // 년월일
+    @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime startTime; // 일정 시작 시간
+    @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime endTime; // 일정 끝나는 시간
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;

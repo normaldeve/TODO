@@ -12,12 +12,9 @@ import java.util.List;
 public interface ToDoRepository extends JpaRepository<Todo, Integer> {
     List<Todo> findAllByDone(boolean done);
 
-    Todo getFirstByDay(LocalDate day);
+    Todo getFirstByTday(LocalDate day);
 
-    List<Todo> findAllByDay(LocalDate day);
+    List<Todo> findAllByTday(LocalDate day);
 
-    // 특정 날짜에서 주어진 시간 범위 내에 시작하는 일정 조회
-    List<Todo> findAllByDayAndStartTimeBetween(LocalDate day, LocalTime start, LocalTime end);
-
-    void deleteAllByDay(LocalDate day);
+    void deleteAllByTday(LocalDate day);
 }

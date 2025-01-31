@@ -2,10 +2,9 @@ package com.example.todo.controller;
 
 import com.example.todo.domain.Todo;
 import com.example.todo.service.TodoService;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -19,49 +18,39 @@ public class TodoController {
 
     // TODO 생성
     @PostMapping
-    public void createTodo(
-            @RequestParam(name = "day") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day,
-            @RequestParam(name = "startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
-            @RequestParam(name = "endTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "content") String content
-    ) {
-        todoService.createTodo(title, content, day, startTime, endTime);
+    public Todo createTodo(@RequestBody Todo todo) {
+        return todoService.createTodo(
+                todo.getTitle(),
+                todo.getContent(),
+                todo.getTday(),
+                todo.getStartTime(),
+                todo.getEndTime()
+        );
     }
 
     // 특정 날짜의 Todo 조회 (GET)
     @GetMapping
     public List<Todo> getTodosByDay(
-            @RequestParam(name = "day") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day
+            @RequestParam(name = "day") String day // day는 날짜 포맷으로 String 받기
     ) {
-        return todoService.readTodo(day);
-    }
-
-    // 특정 날짜와 시간 범위에 해당하는 Todo 조회 (GET)
-    @GetMapping("/range")
-    public List<Todo> getTodosByTimeRange(
-            @RequestParam(name = "day") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day,
-            @RequestParam(name = "startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
-            @RequestParam(name = "endTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime
-    ) {
-        return todoService.readTodos(day, startTime, endTime);
+        return todoService.readTodo(LocalDate.parse(day));
     }
 
     // Todo 업데이트 (PUT)
     @PutMapping
-    public void updateTodo(
-            @RequestParam(name = "day") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day,
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "content") String content
+    public Todo updateTodo(
+            @RequestBody Todo todo // @RequestBody로 Todo 객체를 받아서 업데이트
     ) {
-        todoService.updateTodo(day, title, content);
+        return todoService.updateTodo(
+                todo.getTday(),
+                todo.getTitle(),
+                todo.getContent()
+        );
     }
 
     // Todo 삭제 (DELETE)
     @DeleteMapping
-    public void deleteTodo(
-            @RequestParam(name = "day") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day
-    ) {
-        todoService.deleteTodo(day);
+    public void deleteTodo(@RequestParam(name = "day") String day) {
+        todoService.deleteTodo(LocalDate.parse(day));
     }
 }
